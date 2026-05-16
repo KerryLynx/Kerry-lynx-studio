@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Payment | Kerry Lynx Studio</title>
+
+  <meta name="description" content="Secure checkout for Kerry Lynx Studio services.">
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">Kerry Lynx</div>
+
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="booking.html">Booking</a>
+  </nav>
+  
+  <nav class="nav">
+  <a href="index.html">Home</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="booking.html">Booking</a>
+  <a href="admin.html">Admin</a>
+</nav>
+</header>
+
+
+<!-- PAYMENT WRAPPER -->
+<section class="section" data-aos="fade-up">
+
+  <h2>Secure Checkout</h2>
+  <p class="muted">Complete your payment to start your project.</p>
+
+  <div class="payment-container">
+
+    <!-- LEFT: FORM -->
+    <div class="card payment-form">
+
+      <h3>Billing Details</h3>
+
+      <form>
+
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email Address" required>
+
+        <input type="text" placeholder="Card Number" maxlength="19" required>
+
+        <div class="row">
+          <input type="text" placeholder="MM/YY" required>
+          <input type="text" placeholder="CVC" required>
+        </div>
+
+        <button type="submit" class="btn">
+          Pay Now
+        </button>
+
+      </form>
+    </div>
+
+    <!-- RIGHT: SUMMARY -->
+    <div class="card payment-summary">
+
+      <h3>Order Summary</h3>
+
+      <div class="summary-item">
+        <p>Selected Plan</p>
+        <h4 id="plan-name">Business Plan</h4>
+      </div>
+
+      <div class="summary-item">
+        <p>Total</p>
+        <h2 id="plan-price">$120</h2>
+      </div>
+
+      <p class="muted small">
+        Secure payment powered by Kerry Lynx Studio.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  © 2026 Kerry Lynx Studio & Kitchen
+</footer>
+
+
+<!-- SCRIPT -->
+<script src="assets/js/script.js"></script>
+
+<script>
+/* SIMPLE PLAN DETECTION */
+const urlParams = new URLSearchParams(window.location.search);
+const plan = urlParams.get("plan");
+
+const plans = {
+  starter: { name: "Starter Plan", price: "$50" },
+  business: { name: "Business Plan", price: "$120" },
+  premium: { name: "Premium Plan", price: "$250" }
+};
+
+if (plan && plans[plan]) {
+  document.getElementById("plan-name").innerText = plans[plan].name;
+  document.getElementById("plan-price").innerText = plans[plan].price;
+}
+</script>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 900,
+    once: true
+  });
+</script>
+
+</body>
+</html>

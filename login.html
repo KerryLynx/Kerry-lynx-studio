@@ -1,0 +1,111 @@
+<!<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Login | Kerry Lynx</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <meta name="theme-color" content="#000000">
+  
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- LOGIN WRAPPER -->
+<section class="section login-section">
+
+  <div class="card login-card">
+
+    <h2>Admin Access</h2>
+    <p class="muted">Sign in to access dashboard</p>
+
+    <!-- ERROR MESSAGE -->
+    <p id="error" style="color:red; display:none;"></p>
+
+    <!-- EMAIL -->
+    <input type="email" id="email" placeholder="Email Address" required>
+
+    <!-- PASSWORD -->
+    <input type="password" id="password" placeholder="Password" required>
+
+    <!-- BUTTON -->
+    <button class="btn" id="loginBtn" onclick="login()">
+      Login
+    </button>
+
+    <!-- LOADING TEXT -->
+    <p id="loading" class="muted" style="display:none;">
+      Signing in...
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- FIREBASE -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "YOUR_DOMAIN",
+  projectId: "YOUR_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const errorBox = document.getElementById("error");
+const loadingText = document.getElementById("loading");
+const loginBtn = document.getElementById("loginBtn");
+
+window.login = async function () {
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  errorBox.style.display = "none";
+
+  if (!email || !password) {
+    errorBox.innerText = "Please fill all fields";
+    errorBox.style.display = "block";
+    return;
+  }
+
+  try {
+    loginBtn.disabled = true;
+    loadingText.style.display = "block";
+
+    await signInWithEmailAndPassword(auth, email, password);
+
+    window.location.href = "admin.html";
+
+  } catch (err) {
+    errorBox.innerText = err.message;
+    errorBox.style.display = "block";
+
+  } finally {
+    loginBtn.disabled = false;
+    loadingText.style.display = "none";
+  }
+};
+
+</script>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 900,
+    once: true
+  });
+</script>
+
+</body>
+</html>

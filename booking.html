@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Book a Project | Kerry Lynx Studio</title>
+
+  <meta name="description" content="Book a premium website, branding, or digital project with Kerry Lynx Studio & Kitchen.">
+  <meta name="keywords" content="booking, web design, branding, portfolio, premium services">
+  <meta name="author" content="Kerry Lynx">
+  <meta name="theme-color" content="#000000">
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">Kerry Lynx</div>
+
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="booking.html">Booking</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="section" data-aos="fade-up">
+  <h2>Project Booking</h2>
+  <p class="muted">
+    Fill in the details below. We respond within 24–48 hours with next steps.
+  </p>
+</section>
+
+<!-- BOOKING FORM -->
+<section class="section" data-aos="fade-up">
+
+  <form action="https://formspree.io/f/mojrzyyp" method="POST" class="form booking-form">
+
+    <!-- Hidden Subject -->
+    <input type="hidden" name="_subject" value="New Project Booking">
+
+    <!-- NAME -->
+    <input type="text" name="name" placeholder="Full Name" required>
+
+    <!-- EMAIL -->
+    <input type="email" name="email" placeholder="Email Address" required>
+
+    <!-- SERVICE -->
+    <select name="service" required>
+      <option value="">Select Service</option>
+      <option value="Website Design">Website Design</option>
+      <option value="Brand Identity">Brand Identity</option>
+      <option value="Portfolio Setup">Portfolio Setup</option>
+      <option value="Food Branding">Food Branding</option>
+    </select>
+
+    <!-- BUDGET -->
+    <select name="budget" required>
+      <option value="">Select Budget Range</option>
+      <option value="$50 - $150">$50 - $150</option>
+      <option value="$150 - $500">$150 - $500</option>
+      <option value="$500+">$500+</option>
+    </select>
+
+    <!-- DATE -->
+    <label class="small">Preferred Start Date</label>
+    <input type="date" name="date" class="calendar-input" required>
+
+    <!-- TIME SLOT -->
+    <label class="small">Preferred Time</label>
+
+    <div class="time-grid">
+
+      <label class="time-card">
+        <input type="radio" name="time" value="Morning" required>
+        <span>Morning</span>
+        <small>9:00 AM – 12:00 PM</small>
+      </label>
+
+      <label class="time-card">
+        <input type="radio" name="time" value="Afternoon">
+        <span>Afternoon</span>
+        <small>12:00 PM – 4:00 PM</small>
+      </label>
+
+      <label class="time-card">
+        <input type="radio" name="time" value="Evening">
+        <span>Evening</span>
+        <small>4:00 PM – 8:00 PM</small>
+      </label>
+
+    </div>
+
+    <!-- MESSAGE -->
+    <textarea name="message" rows="6" placeholder="Describe your project in detail..." required></textarea>
+
+    <!-- SUBMIT -->
+    <button type="submit" class="btn">Send Booking Request</button>
+
+  </form>
+
+</section>
+
+<!-- TRUST SECTION -->
+<section class="section" data-aos="fade-up">
+
+  <h3>Why Clients Choose Us</h3>
+
+  <div class="grid">
+
+    <div class="card">
+      <h4>Professional Process</h4>
+      <p>Structured workflow from idea to delivery.</p>
+    </div>
+
+    <div class="card">
+      <h4>Modern Design</h4>
+      <p>Luxury UI system built for performance and clarity.</p>
+    </div>
+
+    <div class="card">
+      <h4>Reliable Communication</h4>
+      <p>Clear updates and direct project handling.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="section contact-section" data-aos="fade-up">
+
+  <div class="hero-badge">
+    CONTACT US
+  </div>
+
+  <h2>Let’s Build Something Premium</h2>
+
+  <p class="muted">
+    Ready to start your project? Reach out directly through WhatsApp or Email.
+  </p>
+
+  <div class="contact-grid">
+
+    <!-- WhatsApp -->
+    <div class="card contact-card">
+      <h3>WhatsApp</h3>
+
+      <p class="contact-info">
+        0536757842
+      </p>
+
+      <a href="https://wa.me/233536757842" class="btn">
+        Chat on WhatsApp
+      </a>
+    </div>
+
+    <!-- Email -->
+    <div class="card contact-card">
+      <h3>Email Address</h3>
+
+      <p class="contact-info">
+        boatengsteven314@gmail.com
+      </p>
+
+      <a href="mailto:boatengsteven314@gmail.com" class="btn btn-outline">
+        Send Email
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  © 2026 Kerry Lynx Studio & Kitchen
+</footer>
+
+<!-- SCRIPTS -->
+<script src="assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+  AOS.init({
+    duration: 900,
+    once: true
+  });
+</script>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 900,
+    once: true
+  });
+</script>
+
+</body>
+</html>

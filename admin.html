@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Dashboard | Kerry Lynx</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#000000">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+  <div class="logo">
+    Kerry Lynx Admin
+  </div>
+
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="booking.html">Booking</a>
+  </nav>
+
+</header>
+
+<!-- HERO -->
+<section class="section" data-aos="fade-up">
+
+  <div class="dashboard-hero">
+
+    <h1>Admin Dashboard</h1>
+
+    <p class="muted">
+      Monitor bookings, clients, schedules, and business activity in real time.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- STATS -->
+<section class="section" data-aos="fade-up">
+
+  <div class="grid">
+
+    <!-- TOTAL -->
+    <div class="card stats-card">
+
+      <div class="stats-top">
+        <span>📦</span>
+        <p>Total Bookings</p>
+      </div>
+
+      <h1 id="totalBookings">0</h1>
+
+    </div>
+
+    <!-- CLIENTS -->
+    <div class="card stats-card">
+
+      <div class="stats-top">
+        <span>👥</span>
+        <p>Latest Requests</p>
+      </div>
+
+      <h1 id="latestBookings">0</h1>
+
+    </div>
+
+    <!-- STATUS -->
+    <div class="card stats-card">
+
+      <div class="stats-top">
+        <span>⚡</span>
+        <p>System Status</p>
+      </div>
+
+      <h1 class="status-active">
+        Active
+      </h1>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- BOOKINGS -->
+<section class="section" data-aos="fade-up">
+
+  <div class="dashboard-title">
+
+    <h2>Client Bookings</h2>
+
+    <p class="muted">
+      All booking requests submitted from the website.
+    </p>
+
+  </div>
+
+  <div id="bookings" class="grid booking-grid"></div>
+
+</section>
+
+<!-- LOADING -->
+<section id="loading" class="section">
+
+  <div class="loading-box">
+
+    <div class="loader-circle"></div>
+
+    <p>Loading booking data...</p>
+
+  </div>
+
+</section>
+
+<!-- FIREBASE -->
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  getDocs
+}
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+/* FIREBASE CONFIG */
+const firebaseConfig = {
+
+  apiKey: "YOUR_API_KEY",
+
+  authDomain: "YOUR_AUTH_DOMAIN",
+
+  projectId: "YOUR_PROJECT_ID"
+
+};
+
+/* INITIALIZE */
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+/* ELEMENTS */
+const bookingsContainer =
+document.getElementById("bookings");
+
+const loading =
+document.getElementById("loading");
+
+/* LOAD BOOKINGS */
+async function loadBookings(){
+
+  try{
+
+    const snapshot =
+    await getDocs(collection(db, "bookings"));
+
+    let count = 0;
+
+    bookingsContainer.innerHTML = "";
+
+    snapshot.forEach((doc)=>{
+
+      const data = doc.data();
+
+      count++;
+
+      bookingsContainer.innerHTML += `
+
+      <div class="card booking-card">
+
+        <div class="booking-header">
+
+          <h3>
+            ${data.name || "Unknown Client"}
+          </h3>
+
+          <span class="booking-badge">
+            ${data.plan || "Standard"}
+          </span>
+
+        </div>
+
+        <div class="booking-info">
+
+          <p>
+            <b>Email:</b>
+            ${data.email || "-"}
+          </p>
+
+          <p>
+            <b>Service:</b>
+            ${data.service || "-"}
+          </p>
+
+          <p>
+            <b>Date:</b>
+            ${data.date || "-"}
+          </p>
+
+          <p>
+            <b>Time:</b>
+            ${data.time || "-"}
+          </p>
+
+        </div>
+
+      </div>
+
+      `;
+
+    });
+
+    document.getElementById("totalBookings")
+    .innerText = count;
+
+    document.getElementById("latestBookings")
+    .innerText = count;
+
+    loading.style.display = "none";
+
+  }
+
+  catch(error){
+
+    loading.innerHTML = `
+
+      <div class="card">
+
+        <h3 style="color:red;">
+          Failed to load bookings
+        </h3>
+
+        <p class="muted">
+          Check your Firebase configuration.
+        </p>
+
+      </div>
+
+    `;
+
+    console.error(error);
+
+  }
+
+}
+
+loadBookings();
+
+</script>
+
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+
+AOS.init({
+  duration: 1000,
+  once: true
+});
+
+</script>
+
+</body>
+</html>
